@@ -4,6 +4,21 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Testing User
+    |--------------------------------------------------------------------------
+    |
+    | This value is the data that will be used when building the application
+    | so it can be tested with a harmless user. Feel free to change it
+    |
+    */
+
+    'test_user' => [
+        'name' => env('TEST_USER', 'Admin'),
+        'email' => env('TEST_EMAIL', 'admin@meetdoctors.com'),
+        'password' => env('TEST_PASSWORD', 'admin')
+    ],
+    /*
+    |--------------------------------------------------------------------------
     | Application Name
     |--------------------------------------------------------------------------
     |
