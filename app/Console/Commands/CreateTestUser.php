@@ -22,7 +22,7 @@ class CreateTestUser extends Command
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Generates a testing user';
     
     private Config $config;
     private Hasher $hasher;
