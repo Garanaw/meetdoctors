@@ -24,6 +24,7 @@ case "$COMMAND" in
         install
         ;;
     build)
-        echo "build"
+        include "build"
+        build
         ;;
 esac

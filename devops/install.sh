@@ -25,8 +25,14 @@ linkStorage() {
     fi
 }
 
+makeUser() {
+    echo "Generating testing user"
+    php artisan make:user:test
+}
+
 install() {
     generateKey
     migrateAll
     linkStorage
+    makeUser
 }
