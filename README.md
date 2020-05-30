@@ -70,18 +70,18 @@ TEST_PASSWORD=
 Once all is configured, you should run the next command:
 
 ```
+./dev.sh build
+```
+
+This command will install the composer and node packages and will compile the last ones. After this, the last thing to do is to set the right permissions to the storage folder. From the application directory, run the next command:
+
+```
 ./dev.sh install
 ```
 
 This will run some commands that Laravel require to function properly, such as key generation, migrations, storage linking and the creation of the testing user.
 
 The next step is to build the application. In order to do that, you should run the following command:
-
-```
-./dev.sh build
-```
-
-This command will install the composer and node packages and will compile the last ones. After this, the last thing to do is to set the right permissions to the storage folder. From the application directory, run the next command:
 
 ```
 sudo chmod -R 777 storage
@@ -122,3 +122,20 @@ vendor/bin/phpunit
 ```
 php artisan test
 ```
+
+## Caveats:
+
+The devops technique is designed to run under Unix architectures. That means, if you are using the application in a Windows system, the previous commands will not work as expected, and you will need to install it manually. To do that:
+
+* Copy the .env.example file to .env
+* Set your environment config
+* Run `composer install`
+* Run `npm install`
+* Run `npm run prod`
+* Run `php artisan key:generate`
+* Run `php artisan migrate:install`
+* Run `php artisan migrate --step`
+* Run `php artisan storage:link`
+* Run `php artisan make:user:test`
+
+With all this, you will be ready to go.
