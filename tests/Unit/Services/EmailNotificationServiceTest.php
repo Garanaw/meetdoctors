@@ -4,7 +4,6 @@ namespace Tests\Unit\Services;
 
 use Tests\TestCase;
 use App\Services\EmailNotificationService;
-use Illuminate\Mail\Mailer;
 use Prophecy\Argument;
 use Illuminate\Config\Repository as Config;
 
