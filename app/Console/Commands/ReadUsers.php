@@ -7,6 +7,7 @@ use App\Services\User\UserReader;
 use App\Services\User\Reporter;
 use Illuminate\Support\Collection;
 use Illuminate\Events\Dispatcher;
+use App\Events\ReportGenerated;
 
 class ReadUsers extends Command
 {
@@ -47,17 +48,16 @@ class ReadUsers extends Command
         
         $reportName = $this->reporter->generateReport($users);
         
-        $this->generateReport($users);
+        $arrayableUsers = $this->reporter->mapUsers($users);
+        $this->generateReport($arrayableUsers);
         
-        $this->dispatcher->dispatch($event, $users);
+        $this->dispatcher->dispatch(new ReportGenerated($reportName, $arrayableUsers));
     }
     
     private function generateReport(Collection $users): void
     {
-        $result = $this->reporter->mapUsers($users);
-        
         $this->table([
             'ID', 'Name', 'Email', 'Phone', 'Company'
-        ], $result->toArray());
+        ], $users->toArray());
     }
 }
