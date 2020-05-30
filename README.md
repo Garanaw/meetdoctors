@@ -98,3 +98,27 @@ http://my-application.test/home
 ```
 
 A form will be shown with a single file input. It will only accept XML files with the provided format. This step can be skipped, but it will be needed to fully test the application.
+
+Then, from a console, you can run the command:
+
+```
+php artisan users:read
+```
+
+This will read the users from all the files uploaded, and also from the URL provided (jsonplaceholder for the tests), and generate a report with them, that will be shown in the console. If the command is run with a cron, this report will not be seen. However, in any case, a CSV file will be generated under the folder `storage/app/reports` and will be sent to the email address specified in the environment variable `ADMIN_EMAIL`.
+
+## Testing:
+
+To run the tests, you can use PHPUnit framework or artisan-
+
+### With PHPUnit
+
+```
+vendor/bin/phpunit
+```
+
+### With Artisan:
+
+```
+php artisan test
+```
