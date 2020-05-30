@@ -75,10 +75,26 @@ Once all is configured, you should run the next command:
 
 This will run some commands that Laravel require to function properly, such as key generation, migrations, storage linking and the creation of the testing user.
 
-The next step is to build the application. in order to do that, you should run the following command:
+The next step is to build the application. In order to do that, you should run the following command:
 
 ```
 ./dev.sh build
 ```
 
-This command will install the composer and node packages and will compile the last ones.
+This command will install the composer and node packages and will compile the last ones. After this, the last thing to do is to set the right permissions to the storage folder. From the application directory, run the next command:
+
+```
+sudo chmod -R 777 storage
+```
+
+With all this done, we are ready to use it.
+
+## Usage:
+
+The first thing is to upload the users file. To do this, log in with the generated user, and go in your browser to:
+
+```
+http://my-application.test/home
+```
+
+A form will be shown with a single file input. It will only accept XML files with the provided format. This step can be skipped, but it will be needed to fully test the application.
