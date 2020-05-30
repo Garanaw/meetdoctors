@@ -22,12 +22,7 @@ class EmailNotificationServiceTest extends TestCase
     {
         parent::setUp();
         
-        /*Mail::fake();
-        $this->sut = $this->app->make(EmailNotificationService::class);*/
-        
-        $this->mailer = $this->prophesize(Mailer::class);
-        $this->mailer->to(self::ADMIN_EMAIL)->willReturn($this->mailer);
-        $this->mailer->send(Argument::cetera())->will(function () {});
+        $this->mailer = $this->swapMailer(self::ADMIN_EMAIL);
         
         $this->config = $this->prophesize(Config::class);
         $this->config->get(self::ADMIN_EMAIL_KEY)->willReturn(self::ADMIN_EMAIL);
