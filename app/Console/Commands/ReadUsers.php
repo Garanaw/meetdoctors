@@ -4,43 +4,60 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use App\Services\User\UserReader;
+use App\Services\User\Reporter;
+use Illuminate\Support\Collection;
+use Illuminate\Events\Dispatcher;
 
 class ReadUsers extends Command
 {
     /**
-     * The name and signature of the console command.
-     *
      * @var string
      */
     protected $signature = 'users:read';
 
     /**
-     * The console command description.
-     *
      * @var string
      */
     protected $description = 'Read the users provided by the companies and the users from the service and generates a CSV file';
     
     private UserReader $userReader;
+    private Reporter $reporter;
+    private Dispatcher $dispatcher;
 
     /**
-     * Create a new command instance.
-     *
      * @return void
      */
-    public function __construct(UserReader $userReader)
-    {
+    public function __construct(
+        UserReader $userReader,
+        Reporter $reporter,
+        Dispatcher $dispatcher
+    ) {
         parent::__construct();
         $this->userReader = $userReader;
+        $this->reporter = $reporter;
+        $this->dispatcher = $dispatcher;
     }
 
     /**
-     * Execute the console command.
-     *
      * @return mixed
      */
     public function handle()
     {
-        $this->userReader->readRecentUsers();
+        $users = $this->userReader->readRecentUsers();
+        
+        $reportName = $this->reporter->generateReport($users);
+        
+        $this->generateReport($users);
+        
+        $this->dispatcher->dispatch($event, $users);
+    }
+    
+    private function generateReport(Collection $users): void
+    {
+        $result = $this->reporter->mapUsers($users);
+        
+        $this->table([
+            'ID', 'Name', 'Email', 'Phone', 'Company'
+        ], $result->toArray());
     }
 }

@@ -18,10 +18,16 @@ class Customer
         string $company
     )
     {
+        $this->id = $id;
         $this->name = $name;
         $this->email = $email;
         $this->phone = $phone;
         $this->company = $company;
+    }
+    
+    public function id(): int
+    {
+        return $this->id;
     }
     
     public function name(): string
