@@ -17,6 +17,18 @@ return [
         'email' => env('TEST_EMAIL', 'admin@meetdoctors.com'),
         'password' => env('TEST_PASSWORD', 'admin')
     ],
+    
+    /*
+    |--------------------------------------------------------------------------
+    | Testing User
+    |--------------------------------------------------------------------------
+    |
+    | Here is the URL of the service to retrieve the users (JsonPLaceholder rulez)
+    |
+    */
+    
+    'user_retriever_service' => 'https://jsonplaceholder.typicode.com/users',
+    
     /*
     |--------------------------------------------------------------------------
     | Application Name

@@ -10,4 +10,5 @@ $router->get('/', function () {
 
 Auth::routes();
 
-$router->get('/home', 'HomeController@index')->name('home');
+$router->get('/home', 'HomeAction')->name('home');
+$router->post('/upload-xml', 'UploadFileAction')->name('upload');

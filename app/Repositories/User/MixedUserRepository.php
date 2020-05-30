@@ -19,11 +19,19 @@ class MixedUserRepository implements UserRepository
     
     public function readRecentUsers(): Collection
     {
-        return $this->fileRepository
-            ->readRecentUsers()
-            ->merge(
-                $this->httpRepository->readRecentUsers()
-            );
+        $httpUsers = $this->readHttpUsers();
+        $fileUsers = $this->readFileUsers();
+        
+        return $httpUsers->merge($fileUsers);
     }
 
+    private function readHttpUsers(): Collection
+    {
+        return $this->httpRepository->readRecentUsers();
+    }
+    
+    private function readFileUsers(): Collection
+    {
+        return $this->fileRepository->readRecentUsers();
+    }
 }
