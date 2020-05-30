@@ -4,12 +4,14 @@ namespace App\Models;
 
 class Customer
 {
+    private int $id;
     private string $name;
     private string $email;
     private string $phone;
     private string $company;
     
     public function __construct(
+        int $id,
         string $name,
         string $email,
         string $phone,

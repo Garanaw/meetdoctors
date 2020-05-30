@@ -46,6 +46,7 @@ class HttpUserRepository implements UserRepository
     protected function mapUsersToCustomers(Collection $users): Collection
     {
         return $users->map(fn(array $data) => new Customer(
+            $data['id'],
             $data['name'],
             $data['email'],
             $data['phone'],
