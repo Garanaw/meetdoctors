@@ -3,20 +3,17 @@
 namespace App\Services;
 
 use Illuminate\Config\Repository as Config;
-use Illuminate\Filesystem\FilesystemManager;
 use Illuminate\Mail\Mailer;
 use App\Mail\ReportGenerated;
 
 class EmailNotificationService
 {
     private Config $config;
-    private FileSystemManager $fileSystem;
     private Mailer $mailer;
 
-    public function __construct(Config $config, FilesystemManager $fileSystem, Mailer $mailer)
+    public function __construct(Config $config, Mailer $mailer)
     {
         $this->config = $config;
-        $this->fileSystem = $fileSystem;
         $this->mailer = $mailer;
     }
     
