@@ -139,3 +139,7 @@ The devops technique is designed to run under Unix architectures. That means, if
 * Run `php artisan make:user:test`
 
 With all this, you will be ready to go.
+
+## Extra info:
+
+The application does not rely on external libraries apart from the required by Laravel. Although the task proposed can be easily done with some libraries (such as [Laravel Excel](https://github.com/Maatwebsite/Laravel-Excel) ), they provide much more functionality than is required to complete the task. Therefore, it has been done manually.
